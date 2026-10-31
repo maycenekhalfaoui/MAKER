@@ -1,0 +1,114 @@
+* { margin: 0; padding: 0; box-sizing: border-box; }
+
+body {
+  min-height: 100vh;
+  display: grid;
+  place-items: center;
+  background: #12081f;
+  font-family: Georgia, serif;
+  overflow: hidden;
+}
+
+canvas { position: fixed; inset: 0; z-index: 0; }
+
+.scene { position: relative; z-index: 1; text-align: center; }
+
+/* ---------- Gâteau ---------- */
+.cake {
+  position: relative;
+  width: 220px;
+  height: 210px;
+  margin: 0 auto 30px;
+}
+.cake > * { position: absolute; }
+
+.plate {
+  bottom: 0; left: -15px;
+  width: 250px; height: 6px;
+  background: #fff;
+  border-radius: 3px;
+  animation: grow-x .6s ease-out both;
+}
+
+.body {
+  bottom: 6px; left: 10px;
+  width: 200px; height: 100px;
+  border-radius: 8px;
+  background: repeating-linear-gradient(
+    to bottom, #b88a7c 0 22px, #8f6358 22px 30px
+  );
+  animation: drop .6s ease-out .6s both;
+}
+
+.icing {
+  bottom: 94px; left: 6px;
+  width: 208px; height: 26px;
+  background: #fff3e0;
+  border-radius: 14px;
+  animation: drop .6s ease-out 1.4s both;
+}
+
+.drip {
+  top: 16px;
+  width: 18px;
+  background: #fff3e0;
+  border-radius: 0 0 9px 9px;
+  transform-origin: top;
+  animation: grow-y .6s ease-out 2s both;
+}
+.d1 { left: 24px;  height: 30px; }
+.d2 { left: 80px;  height: 44px; animation-delay: 2.1s; }
+.d3 { left: 130px; height: 24px; animation-delay: 2.2s; }
+.d4 { left: 172px; height: 36px; animation-delay: 2.3s; }
+
+.candle {
+  bottom: 118px; left: 106px;
+  width: 8px; height: 38px;
+  background: repeating-linear-gradient(
+    to bottom, #fff 0 8px, #f8bbd0 8px 14px
+  );
+  border-radius: 3px;
+  animation: drop .5s ease-out 2.7s both;
+}
+
+.flame {
+  top: -22px; left: -1px;
+  width: 10px; height: 20px;
+  background: radial-gradient(#fff59d 20%, #ffca28 80%);
+  border-radius: 50% 50% 50% 50% / 60% 60% 40% 40%;
+  box-shadow: 0 0 14px 6px rgba(255, 214, 79, .55);
+  transform-origin: bottom;
+  animation:
+    fade-in .4s ease-out 3.4s both,
+    flicker .8s ease-in-out 3.8s infinite alternate;
+}
+
+/* ---------- Texte ---------- */
+.title {
+  font-family: "Mrs Saint Delafield", cursive;
+  font-weight: normal;
+  font-size: 3.4rem;
+  color: #f8bbd0;
+  animation: fade-in 1s ease-out 3.8s both;
+}
+
+.name {
+  font-family: "Mrs Saint Delafield", cursive;
+  margin-top: 0;
+  font-size: 4rem;
+  color: #fff;
+  animation: fade-in 1s ease-out 4.3s both;
+}
+
+/* ---------- Animations ---------- */
+@keyframes drop {
+  from { transform: translateY(-300px); opacity: 0; }
+  to   { transform: translateY(0);      opacity: 1; }
+}
+@keyframes grow-x { from { transform: scaleX(0); } to { transform: scaleX(1); } }
+@keyframes grow-y { from { transform: scaleY(0); } to { transform: scaleY(1); } }
+@keyframes fade-in { from { opacity: 0; } to { opacity: 1; } }
+@keyframes flicker {
+  from { transform: scale(1, 1)     rotate(-3deg); }
+  to   { transform: scale(.9, 1.12) rotate(3deg);  }
+}
